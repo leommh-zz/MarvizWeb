@@ -5,8 +5,8 @@ import { colors } from "../styles";
 
 const Divider = (props) => {
   const DividerStyled = styled.View`
-    width: ${props => props.width ? props.width : '90%'};
-    height: ${props => props.height ? props.height : '2px'};
+    width: ${props => props.width ? props.width : '95%'};
+    height: ${props => props.height ? props.height : '4px'};
     background-color: ${colors.backgroundLight};
     border-radius: 20px;
     margin-top: 10px;

@@ -1,7 +1,7 @@
 {
   "name": "Marviz",
-  "version": "1.0",
-  "private": true,
+  "version": "2.0",
+  "private": false,
   "scripts": {
     "start": "./node_modules/.bin/react-native start",
     "start-clean": "rm -rf $TMPDIR/react-* && watchman watch-del-all && npm start -- --reset-cache",

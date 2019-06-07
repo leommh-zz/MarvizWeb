@@ -5,26 +5,32 @@ import Comic from "../components/Comic";
 import Loader from "../components/Loader";
 import Menu from "../components/Menu";
 import List from "../components/List";
-import { getAllComics } from "../services/api";
+import { getComics } from "../actions/MarvelActions";
 
 class Home extends Component {
-  state = {
-    comics: [],
-    number: 100,
-  };
 
-  getComics = async () => {
-    const comics = await getAllComics({ limit: 50 });
-    this.setState({ comics });
+  initialLimit = 10;
+  limit = 20;
+  skip = 0;
+
+  getComics = (newLimit) => {
+    this.props.getComics(newLimit);
+
+    if (newLimit !== this.initialLimit) {
+      this.skip += this.limit;
+      this.limit = newLimit;
+    }
   }
 
-  async componentDidMount() {
-    await this.getComics();
+  componentDidMount() {
+    if (!!this.props.comics && this.props.comics.length <= 0) {
+      this.getComics(this.limit);
+    }
   }
 
   render() {
     const { history } = this.props;
-    const { comics } = this.state;
+    const { comics } = this.props;
     return (
       <Container>
         <Menu user={this.props.user} history={history}/>
@@ -34,7 +40,7 @@ class Home extends Component {
             data={comics}
             renderItem={({ item }) => <Comic item={item} history={history} />}
             keyExtractor={(item, index) => `${item.id}`}
-            numColumns={5}
+            numColumns={4}
             refreshFunc={() => this.getComics()}
           />
         ) : (
@@ -48,9 +54,10 @@ class Home extends Component {
 }
 
 const mapStateToProps = state => ({
-  user: state.UserReducer.user
+  user: state.UserReducer.user,
+  comics: state.MarvelReducer.comics
 });
 
 export default connect(
-  mapStateToProps,
+  mapStateToProps, { getComics }
 )(Home);

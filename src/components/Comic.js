@@ -6,53 +6,76 @@ import { stringCut, getValue } from "../services/helpers";
 import { SmallText } from "./Text";
 import { colors } from "../styles";
 
+const ComicStyled = styled.View`
+  flex: 1;
+  min-height: ${getValue(300)};
+  min-width: 100%;
+  justify-content: center;
+  align-items: center;
+
+`;
+
+const HeaderStyled = styled.View`
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  min-width: 100%;
+  background-color: ${colors.primary};
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+`;  
+
+const ImagePanel = styled.View`
+  border-radius: 50px;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+`;  
+
 class Comic extends Component {
 
   render() {
     const {
       id,
       title,
-      thumbnail: { path, extension }
+      thumbnail
     } = this.props.item;
 
-    const ComicStyled = styled.View`
-      flex: 0;
-      min-height: ${getValue(200)};
-      min-width: 100%;
-    `;
+    let uri = '';
 
-    const HeaderStyled = styled.View`
-      border-top-left-radius: 10px;
-      border-top-right-radius: 10px;
-      background-color: ${colors.primary};
-      justify-content: center;
-      align-items: center;
-      padding: 5px;
-    `;
-
-    const url = `${path}.${extension}`;
+    if ( !!thumbnail ) {
+      const { path, extension } = thumbnail;
+      if ( !!path && !!extension ) {
+        uri = path + '.' + extension;
+      }
+    }
 
     return (
-      <Card
-        margin={25}
+      <Card 
         onPress={() => this.props.history.push({
           pathname: '/comicPage',
-          state: { comic: this.props.item, thumbnail: url }
+          state: { comic: this.props.item, thumbnail: uri }
         })}
       >
         <ComicStyled>
           <HeaderStyled>
-            <SmallText fontSize={getValue(18)}>{stringCut(title, 15, "...")}</SmallText>
+            <SmallText fontSize={getValue(20)}>{stringCut(title, 40, "...")}</SmallText>
           </HeaderStyled>
-          <Image
-            width={'100%'}
-            height={getValue(180)}
-            source={{ uri: url }}
-            radiusBottom={10}
-          />
+
+          <ImagePanel>
+            <Image
+              source={{ uri }}
+              height={getValue(250)}
+              width={getValue(200)}
+              radius={10}
+              resizeMode="contain"
+              padding={15}
+            />
+          </ImagePanel>
+          
         </ComicStyled>
       </Card>
-      
     );
   }
 }

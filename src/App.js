@@ -7,9 +7,6 @@ import Routes from "./Routes";
 import Reducers from "./reducers";
 import { colors } from "./styles";
 
-// import Login from "./pages/Login";
-// import { Text } from "react-native";
-
 class App extends Component {
   render() {
     return (

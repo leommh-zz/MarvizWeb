@@ -1,49 +1,75 @@
 import React, { Component } from "react";
 import styled from "styled-components/native";
 import { BigText, RegularText } from "./Text";
+import Loader from "./Loader";
 import { getValue } from "../services/helpers";
+import { RefreshControl } from 'react-native';
 import { colors } from "../styles";
 
 const colorsRefresh = [colors.primary, colors.secundary];
 
 const ViewStyled = styled.View`
-  flex: 1;
-  width: 100%;
-  min-height: 100%;
+  flex: 0;
   justify-content: center;
   align-items: center;
-  min-height: ${getValue(70)};
+  min-height: 50px;
+  margin-bottom: 20px;
 `;
 
 const FlatListStyled = styled.FlatList`
-  flex: 1;
-  padding-bottom: 5px;
-  padding-top: 10px;
-  min-width: 100%;
-  min-height: 100%;
+
+`;
+
+const Padding = styled.View`
+  padding: 40px;
+  width: 100%;
 `;
 
 class List extends Component {
+  state = {
+    refreshing: false
+  };
+
+  renderTitle = (title) => (
+    <ViewStyled>
+      <BigText center fontSize={getValue(40)}>{title}</BigText>
+    </ViewStyled>
+  )
 
   render() {
-    const { title, refreshFunc, ...rest } = this.props;
+    const { title, refreshFunc, loading, ...rest } = this.props;
     return (
-      <ViewStyled>
-        <FlatListStyled
-          ListHeaderComponent={
-            <ViewStyled>
-              <BigText center fontSize={getValue(40)}>{title}</BigText>
-            </ViewStyled>
-          }
-          ListEmptyComponent={
-            <ViewStyled>
-              <RegularText center fontSize={getValue(20)}>Lista Vazia :(</RegularText>
-            </ViewStyled>
-          }
-          onEndReachedThreshold={1}
-          {...rest}
-        />
-      </ViewStyled>
+      <Padding>
+        {this.renderTitle(title)}
+
+        {
+          loading ? (
+            <Loader />
+          ) : (
+            <FlatListStyled
+              refreshControl={
+                refreshFunc && (
+                  <RefreshControl
+                    colors={colorsRefresh}
+                    refreshing={this.state.refreshing}
+                    onRefresh={refreshFunc}
+                  />
+                )
+              }
+              ListEmptyComponent={
+                <ViewStyled>
+                  <RegularText center>Lista Vazia :(</RegularText>
+                </ViewStyled>
+              }
+              initialNumToRender={10}
+              removeClippedSubviews={true}
+              onEndReachedThreshold={1}
+              {...rest}
+            />
+          )
+        }
+      
+      </Padding>
     );
   }
 }

@@ -1,8 +1,7 @@
-import React from "react";
+import React, { PureComponent } from "react";
 import styled from "styled-components/native";
 
-const Column = ({ children, ...rest }) => {
-  const ColumnStyled = styled.View`
+const ColumnStyled = styled.View`
     flex: ${props => props.flex ? props.flex : 0};
     flex-direction: column;
     width: 100%;
@@ -14,7 +13,12 @@ const Column = ({ children, ...rest }) => {
     ${props => props.style && { ...props.style }};
   `;
 
-  return <ColumnStyled {...rest}>{children}</ColumnStyled>;
+class Column extends PureComponent {
+  
+  render() {
+    return <ColumnStyled {...this.props}>{this.props.children}</ColumnStyled>;
+  }
+   
 };
 
 export default Column;

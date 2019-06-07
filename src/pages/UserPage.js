@@ -12,7 +12,7 @@ import { stringCut, getValue } from "../services/helpers";
 
 const Header = styled.View`
   padding: 20px;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 `;
 
@@ -24,7 +24,10 @@ class userPage extends Component {
     } = this.props;
     return (
       <Container>
-        <Navbar history={history} />
+        <Navbar 
+          history={history}
+          navigateInternal={true} 
+        />
         <Column flex={1}>
           <Header>
             <BigText fontSize={getValue(30)} align="center">
@@ -46,7 +49,10 @@ class userPage extends Component {
             keyExtractor={(item, index) => `${item.id}`}
             numColumns={2}
           />
+        
         </Column>
+
+        
       </Container>
     );
   }

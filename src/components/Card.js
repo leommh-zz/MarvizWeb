@@ -8,12 +8,9 @@ const CardStyled = styled.TouchableOpacity`
   justify-content: center;
   align-items: center;
   border-radius: 10px;
-  margin-left: 15px;
-  margin-right: 15px;
-  margin-top: 5px;
-  margin-bottom: 5px;
   ${props => props.width && { maxWidth: props.width }};
-  ${props => props.margin && { margin: props.margin }}
+  ${{ marginHorizontal: 10 }}
+  ${{ marginVertical: 10 }}
 `;
 
 class Card extends PureComponent {

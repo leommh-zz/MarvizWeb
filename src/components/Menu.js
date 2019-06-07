@@ -53,8 +53,8 @@ class Menu extends PureComponent {
         >
           <Image
             source={this.props.user.image}
-            width={getValue(45)}
-            height={getValue(45)}
+            width={getValue(60)}
+            height={getValue(60)}
             resizeMode="contain"
           />
         </UserInfo>
@@ -63,11 +63,11 @@ class Menu extends PureComponent {
           <MenuItem
             onPress={() =>
               this.props.history.push({
-                pathname: "/home"
+                pathname: "/"
               })
             }
           >
-            <ExtraBigText fontSize={getValue(40)}>Home</ExtraBigText>
+            <ExtraBigText fontSize={getValue(45)}>Home</ExtraBigText>
           </MenuItem>
         </MenuBar>
       </MenuStyled>

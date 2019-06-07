@@ -1,10 +1,9 @@
-import React from "react";
+import React, { PureComponent } from "react";
 import styled from "styled-components/native";
 import { iOSUIKit } from "react-native-typography";
 import { colors } from "../styles";
 
-const TextInput = (props) => {
-  const TextInputStyled = styled.TextInput`
+const TextInputStyled = styled.TextInput`
     ${iOSUIKit.body};
     width: 90%;
     background-color: ${colors.backgroundLight};
@@ -15,7 +14,10 @@ const TextInput = (props) => {
     margin: 5px;
   `;
 
-  return <TextInputStyled {...props} />;
+class TextInput extends PureComponent {
+  render() {
+    return <TextInputStyled {...this.props} />;
+  }
 };
 
 export default TextInput;

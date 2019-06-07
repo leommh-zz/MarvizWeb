@@ -8,10 +8,12 @@ const Image = (props) => {
     width: ${props.width ? props.width : "100%"};
     ${props => props.radiusBottom && {borderBottomLeftRadius: props.radiusBottom, borderBottomRightRadius: props.radiusBottom}};
     ${props => props.radius && {borderRadius: props.radius}};
+    ${props => props.padding && {padding: props.padding}};
+    ${props => props.resizeMode ? {resizeMode: props.resizeMode} : {resizeMode: 'cover'}}
   `;
 
   return (
-    <ImageStyled resizeMode={props.resizeMode ? props.resizeMode : 'cover'}  {...props}/> 
+    <ImageStyled {...props}/> 
   );
 };
 
