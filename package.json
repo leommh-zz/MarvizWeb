@@ -5,17 +5,8 @@
   "scripts": {
     "start": "./node_modules/.bin/react-native start",
     "start-clean": "rm -rf $TMPDIR/react-* && watchman watch-del-all && npm start -- --reset-cache",
-    "android": "./node_modules/.bin/react-native run-android",
-    "ios": "./node_modules/.bin/react-native run-ios",
     "web": "node scripts/start.js",
-    "build": "node scripts/build.js",
-    "test": "npm run test:web && npm run test:native",
-    "test:web-watch": "node scripts/test.js --watch --config \"./config/web.jest.config.js\"",
-    "test:web": "node scripts/test.js --config \"./config/web.jest.config.js\"",
-    "test:native": "node scripts/test.js --config \"./config/native.jest.config.js\"",
-    "test:native-watch": "node scripts/test.js --watch --config \"./config/native.jest.config.js\"",
-    "coverage": "node scripts/test.js --coverage --config \"./config/web.jest.config.js\"",
-    "coverage:native": "node scripts/test.js --config \"./config/native.jest.config.js\" --coverage"
+    "build": "node scripts/build.js"
   },
   "dependencies": {
     "axios": "^0.18.0",
