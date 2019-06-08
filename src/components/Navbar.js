@@ -36,7 +36,7 @@ class Navbar extends PureComponent {
     const leftRender = () => {
       return (
         <TouchableOpacity onPress={() => history.goBack()}>
-          <BigText fontSize={getValue(40)}>Voltar</BigText>
+          <BigText fontSize={getValue(40)}>Back</BigText>
         </TouchableOpacity>
       );
     };
