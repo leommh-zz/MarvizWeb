@@ -1,12 +1,15 @@
 {
   "name": "Marviz",
-  "version": "2.0",
+  "version": "1.0",
   "private": false,
+  "homepage": "https://marviz.github.io/",
   "scripts": {
     "start": "./node_modules/.bin/react-native start",
     "start-clean": "rm -rf $TMPDIR/react-* && watchman watch-del-all && npm start -- --reset-cache",
     "web": "node scripts/start.js",
-    "build": "node scripts/build.js"
+    "build": "node scripts/build.js",
+	"predeploy": "yarn run build",
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "axios": "^0.18.0",
