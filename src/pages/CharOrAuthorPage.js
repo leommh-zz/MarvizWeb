@@ -142,7 +142,7 @@ class CharOrAuthorPage extends Component {
             {
                 !!series && !!series.items && series.items.length > 0 && (
                     <List
-                      title="Comics"
+                      title={`${typePage == 'author' ? 'Author' : 'Character'} Comics`}
                       data={seriesFull}
                       loading={seriesFull.length > 0 ? false : true}
                       renderItem={({ item }) => <Comic item={item} history={history} />}

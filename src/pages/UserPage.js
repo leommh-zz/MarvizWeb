@@ -43,7 +43,7 @@ class userPage extends Component {
           />
 
           <List
-            title="Comics Favoritas"
+            title="Favorited Comics"
             data={comicsFavorite}
             renderItem={({ item }) => <Comic item={item} />}
             keyExtractor={(item, index) => `${item.id}`}
