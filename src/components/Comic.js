@@ -53,21 +53,21 @@ class Comic extends Component {
 
     return (
       <Card 
-        onPress={() => this.props.history.push({
+        onPressIn={() => this.props.history.push({
           pathname: '/comicPage',
           state: { comic: this.props.item, thumbnail: uri }
         })}
       >
         <ComicStyled>
           <HeaderStyled>
-            <SmallText fontSize={getValue(20)}>{stringCut(title, 40, "...")}</SmallText>
+            <SmallText fontSize={getValue(18)}>{stringCut(title, 25, "...")}</SmallText>
           </HeaderStyled>
 
           <ImagePanel>
             <Image
               source={{ uri }}
-              height={getValue(250)}
-              width={getValue(200)}
+              height={getValue(225)}
+              width={getValue(185)}
               radius={10}
               resizeMode="contain"
               padding={15}

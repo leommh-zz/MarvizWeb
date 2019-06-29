@@ -17,7 +17,7 @@ class Card extends PureComponent {
   render() {
     const { children, onPress, ...rest } = this.props;
 
-    return <CardStyled onPress={onPress ? onPress : () => false} {...rest}>{children}</CardStyled>;
+    return <CardStyled onPressIn={onPress ? onPress : () => false} {...rest}>{children}</CardStyled>;
   }
 }
 

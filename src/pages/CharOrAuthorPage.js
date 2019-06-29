@@ -115,7 +115,7 @@ class CharOrAuthorPage extends Component {
                     if (url.type == 'wiki') {
                       return (
                         <TopMargin>
-                          <Button onPress={() => Linking.openURL(url.url)}>
+                          <Button onPressIn={() => Linking.openURL(url.url)}>
                             <RegularText>Wiki</RegularText>
                           </Button>
                         </TopMargin>

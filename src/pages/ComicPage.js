@@ -124,7 +124,7 @@ class ComicPage extends Component {
 
     return (
       <TouchableOpacity
-        onPress={() => this.props.history.push({
+        onPressIn={() => this.props.history.push({
           pathname: '/charOrAuthorPage',
           state: { 
             title: type == 'author' ? item.fullName : item.name,
@@ -211,7 +211,7 @@ class ComicPage extends Component {
           <Options>
             <Button
               outline={!favorited ? true : false}
-              onPress={!loading ? () => this.favorite(comic) : () => false}
+              onPressIn={!loading ? () => this.favorite(comic) : () => false}
             >
               {!loading ? (
                 <RegularText fontSize={getValue(20)}>
@@ -262,7 +262,7 @@ class ComicPage extends Component {
                   const uri = item.path + "." + item.extension;
                   return (
                     <TouchableOpacity
-                      onPress={() => this.handleImage(index)}
+                      onPressIn={() => this.handleImage(index)}
                       style={{ marginHorizontal: 5, marginVertical: 10 }}
                     >
                       <Image

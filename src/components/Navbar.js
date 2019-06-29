@@ -35,7 +35,7 @@ class Navbar extends PureComponent {
 
     const leftRender = () => {
       return (
-        <TouchableOpacity onPress={() => history.goBack()}>
+        <TouchableOpacity onPressIn={() => history.goBack()}>
           <BigText fontSize={getValue(40)}>Back</BigText>
         </TouchableOpacity>
       );
@@ -44,7 +44,7 @@ class Navbar extends PureComponent {
     const rightRender = () => {
       return !!navigateInternal && (
         <Home>
-          <TouchableOpacity onPress={() => history.push('/')}>
+          <TouchableOpacity onPressIn={() => history.push('/')}>
             <Image
               source={homeIcon}
               width={getValue(50)}

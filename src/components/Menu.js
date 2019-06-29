@@ -45,7 +45,7 @@ class Menu extends PureComponent {
     return (
       <MenuStyled {...this.props}>
         <UserInfo
-          onPress={() =>
+          onPressIn={() =>
             this.props.history.push({
               pathname: "/userPage"
             })
@@ -61,7 +61,7 @@ class Menu extends PureComponent {
 
         <MenuBar>
           <MenuItem
-            onPress={() =>
+            onPressIn={() =>
               this.props.history.push({
                 pathname: "/"
               })
