@@ -5,7 +5,7 @@ import Comic from "../components/Comic";
 import Loader from "../components/Loader";
 import Menu from "../components/Menu";
 import List from "../components/List";
-import { getComics } from "../actions/MarvelActions";
+import { getComics, getStorageComics } from "../actions/MarvelActions";
 
 class Home extends Component {
 
@@ -24,6 +24,7 @@ class Home extends Component {
 
   componentDidMount() {
     if (!!this.props.comics && this.props.comics.length <= 0) {
+      this.props.getStorageComics();
       this.getComics(this.limit);
     }
   }
@@ -41,7 +42,6 @@ class Home extends Component {
             renderItem={({ item }) => <Comic item={item} history={history} />}
             keyExtractor={(item, index) => `${item.id}`}
             numColumns={4}
-            refreshFunc={() => this.getComics()}
           />
         ) : (
           <Container flex={1}>
@@ -59,5 +59,5 @@ const mapStateToProps = state => ({
 });
 
 export default connect(
-  mapStateToProps, { getComics }
+  mapStateToProps, { getComics, getStorageComics }
 )(Home);
